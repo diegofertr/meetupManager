@@ -56,10 +56,28 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
+              <h4 class="display-1 secondary--text">Choose a Data & Time</h4>
+            </v-flex xs12>
+          </v-layout>
+          <v-layout row class="mb-2">
+            <v-flex xs12 sm6 offset-sm3>
+              <v-date-picker v-model="date" landscape></v-date-picker>
+              <p>{{ date }}</p>
+            </v-flex xs12>
+          </v-layout>
+          <v-layout row class="mb-2">
+            <v-flex xs12 sm6 offset-sm3>
+              <v-time-picker v-model="time"  landscape></v-time-picker>
+              <p>{{ time }}</p>
+            </v-flex xs12>
+          </v-layout>
+          <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
               <v-btn
                 class="primary"
                 :disabled="!formIsValid"
                 type="submit"> Create Meetup</v-btn>
+                {{ submittableDateTime }}
             </v-flex xs12>
           </v-layout>
         </form>
@@ -72,11 +90,13 @@
 export default {
   data () {
     return {
-      id: '213123123',
+      id: 'asddlakuhewiqi324',
       title: '',
       location: '',
       imageUrl: '',
-      description: ''
+      description: '',
+      date: null,
+      time: new Date()
     }
   },
   computed: {
@@ -85,6 +105,20 @@ export default {
         this.location !== '' &&
         this.imageUrl !== '' &&
         this.description !== ''
+    },
+    submittableDateTime () {
+      const date = new Date(this.date)
+      if (typeof this.time === 'string') {
+        let hours = this.time.match(/^(\d+)/)[1]
+        const minutes = this.time.match(/:(\d+)/)[1]
+        date.setHours(hours)
+        date.setMinutes(minutes)
+      } else {
+        date.setHours(this.time.getHours())
+        date.setMinutes(this.time.getMinutes())
+      }
+      console.log(date)
+      return date
     }
   },
   methods: {
