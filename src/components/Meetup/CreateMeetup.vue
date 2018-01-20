@@ -62,13 +62,11 @@
           <v-layout row class="mb-2">
             <v-flex xs12 sm6 offset-sm3>
               <v-date-picker v-model="date" landscape></v-date-picker>
-              <p>{{ date }}</p>
             </v-flex xs12>
           </v-layout>
           <v-layout row class="mb-2">
             <v-flex xs12 sm6 offset-sm3>
-              <v-time-picker v-model="time"  landscape></v-time-picker>
-              <p>{{ time }}</p>
+              <v-time-picker v-model="time" format="24hr" landscape></v-time-picker>
             </v-flex xs12>
           </v-layout>
           <v-layout row>
@@ -77,7 +75,6 @@
                 class="primary"
                 :disabled="!formIsValid"
                 type="submit"> Create Meetup</v-btn>
-                {{ submittableDateTime }}
             </v-flex xs12>
           </v-layout>
         </form>
@@ -87,6 +84,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   data () {
     return {
@@ -95,7 +94,7 @@ export default {
       location: '',
       imageUrl: '',
       description: '',
-      date: null,
+      date: moment().format('YYYY-MM-DD'),
       time: new Date()
     }
   },
@@ -132,7 +131,7 @@ export default {
         location: this.location,
         imageUrl: this.imageUrl,
         description: this.description,
-        date: new Date()
+        date: this.submittableDateTime
       }
       this.$store.dispatch('createMeetup', meetupData)
       this.$router.push('/meetups')
