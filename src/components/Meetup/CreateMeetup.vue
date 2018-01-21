@@ -89,7 +89,7 @@ import moment from 'moment'
 export default {
   data () {
     return {
-      id: 'asddlakuhewiqi324',
+      id: '',
       title: '',
       location: '',
       imageUrl: '',
