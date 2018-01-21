@@ -24,10 +24,7 @@ export const store = new Vuex.Store({
         description: 'It\'s Paris!!'
       }
     ],
-    user: {
-      id: 'iyer87387634',
-      registeredMeetups: ['asdyyu2348763']
-    }
+    user: null
   },
   mutations: {
     createMeetup (state, payload) {
@@ -67,6 +64,22 @@ export const store = new Vuex.Store({
             console.log(err)
           }
         )
+    },
+    signUserIn ({commit}, payload) {
+      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+        .then(
+          user => {
+            const newUser = {
+              id: user.uid,
+              registeredMeetups: []
+            }
+            commit('setUser', newUser)
+        })
+        .catch(
+          err => {
+            console.log(err)
+          }
+        )
     }
   },
   getters: {
@@ -84,6 +97,9 @@ export const store = new Vuex.Store({
     },
     featuredMeetups (state, getters) {
       return getters.loadedMeetups.slice(0, 5)
+    },
+    user (state) {
+      return state.user
     }
   }
 })
