@@ -6,6 +6,7 @@ import App from './App'
 import router from './router'
 import { store } from './store'
 import DateFilter from './filters/date'
+import AlertComponent from './components/Shared/Alert.vue'
 
 Vue.use(Vuetify, {
   theme: {
@@ -14,7 +15,7 @@ Vue.use(Vuetify, {
     secondary: '#bdbdbd',
     info: '#42a5f5',
     warning: '#ffb300',
-    error: '#d50000',
+    error: '#ff1744',
     success: '#81c784'
   }
 })
@@ -22,6 +23,7 @@ Vue.use(Vuetify, {
 Vue.config.productionTip = false
 
 Vue.filter('date', DateFilter)
+Vue.component('app-alert', AlertComponent)
 
 /* eslint-disable no-new */
 new Vue({
