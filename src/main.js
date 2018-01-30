@@ -10,6 +10,7 @@ import AlertComponent from './components/Shared/Alert.vue'
 import EditMeetupDetailsDialogComponent from './components/Meetup/Edit/EditMeetupDetailsDialog.vue'
 import EditMeetupDateDialogComponent from './components/Meetup/Edit/EditMeetupDateDialog.vue'
 import EditMeetupTimeDialogComponent from './components/Meetup/Edit/EditMeetupTimeDialog.vue'
+import RegisterDialogComponent from './components/Meetup/Registration/RegisterDialog.vue'
 
 Vue.use(Vuetify, {
   theme: {
@@ -30,6 +31,7 @@ Vue.component('app-alert', AlertComponent)
 Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialogComponent)
 Vue.component('app-edit-meetup-date-dialog', EditMeetupDateDialogComponent)
 Vue.component('app-edit-meetup-time-dialog', EditMeetupTimeDialogComponent)
+Vue.component('app-meetup-register-dialog', RegisterDialogComponent)
 
 /* eslint-disable no-new */
 new Vue({
@@ -50,6 +52,7 @@ new Vue({
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.$store.dispatch('autoSignIn', user)
+        this.$store.dispatch('fetchUserData')
       }
     })
 
