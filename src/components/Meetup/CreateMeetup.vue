@@ -85,8 +85,6 @@
 </template>
 
 <script>
-import moment from 'moment'
-
 export default {
   data () {
     return {
@@ -95,8 +93,9 @@ export default {
       location: '',
       imageUrl: '',
       description: '',
-      date: moment().format('YYYY-MM-DD'),
-      time: new Date(),
+      // date: moment().format('YYYY-MM-DD'),
+      date: new Date().toJSON(),
+      time: new Date().toJSON(),
       image: null
     }
   },

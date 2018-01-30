@@ -8,6 +8,8 @@ import { store } from './store'
 import DateFilter from './filters/date'
 import AlertComponent from './components/Shared/Alert.vue'
 import EditMeetupDetailsDialogComponent from './components/Meetup/Edit/EditMeetupDetailsDialog.vue'
+import EditMeetupDateDialogComponent from './components/Meetup/Edit/EditMeetupDateDialog.vue'
+import EditMeetupTimeDialogComponent from './components/Meetup/Edit/EditMeetupTimeDialog.vue'
 
 Vue.use(Vuetify, {
   theme: {
@@ -26,6 +28,8 @@ Vue.config.productionTip = false
 Vue.filter('date', DateFilter)
 Vue.component('app-alert', AlertComponent)
 Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialogComponent)
+Vue.component('app-edit-meetup-date-dialog', EditMeetupDateDialogComponent)
+Vue.component('app-edit-meetup-time-dialog', EditMeetupTimeDialogComponent)
 
 /* eslint-disable no-new */
 new Vue({
